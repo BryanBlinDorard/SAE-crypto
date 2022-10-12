@@ -22,6 +22,28 @@ def encode_affine(texte:str,clef:tuple)->str:
         indices_code.append((clef[0]*indice_lettre+clef[1])%26)
     return convertir_en_lettres(indices_code)
 
+"""
+Formule :
+    Pour une clef (a,b) et une lettre x à déchiffrer on a :
+    resultat_decodage=(x-b)/a
+"""
+
+def decode_affine(code:str,clef:tuple)->str:
+    """Décode un texte donné avec le chiffrement affine grâce à une clef donnée.
+
+    Args:
+        texte (str): Un texte à décoder.
+        clef (tuple): Un clef sous forme d'un tuble composé de deux entiers.
+
+    Returns:
+        str: Un texte décodé.
+    """    
+    indices_code = convertir_en_nombres(code)
+    indices_lettres = []
+    for indice_code in indices_code:
+        indices_lettres.append((clef[0]*indice_code+clef[1])%26)
+    return convertir_en_lettres(indices_lettres)
+
 def convertir_en_nombres(texte:str)->list:
     """Convertie un texte donnné en une liste d'entiers suivant la position des lettres dans l'alphabet.
 

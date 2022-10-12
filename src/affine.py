@@ -89,3 +89,37 @@ def texte_en_majuscules(texte:str)->str:
     for lettre in texte:
         res+=lettre.upper()
     return res
+
+def sauvergarder_carateres_non_lettres(texte:str)->dict:
+    """Sauvegarde dans un dictionnaire les caractères n'étant 
+    pas des lettres ainsi que leur position dans la chaine de caractères initiale
+
+    Args:
+        texte (str): Un texte à sauvegarder.
+
+    Returns:
+        dict: Le dictionnaire ayant en clef l'indice de la position du caractère dans le texte inital 
+        et ayant en valeur le caractère.
+    """    
+
+def supprimer_caracteres_non_lettres(texte:str)->str:
+    """Supprime les caractères n'étant pas des lettres dans une chaine donnée.
+
+    Args:
+        texte (str): Un texte dans lequel supprimer les caractères non lettres.
+
+    Returns:
+        str: Un chaine de caractères contenant uniquement des lettres.
+    """    
+
+def ajouter_caractères_non_lettres(texte:str,positions:dict)->str:
+    """Ajoute les caractères spéciaux dans un texte donné grâce aux positions données.
+
+    Args:
+        texte (str): Un texte dans lequel ajouter les caractères spéciaux.
+        positions (dict): Un dictionnaire contentant les positions des caractères spéciaux 
+        dans la chaine initiale ainsi que les caractères en eux même.
+
+    Returns:
+        str: Un texte avec les caractères spéciaux rajoutés.
+    """    

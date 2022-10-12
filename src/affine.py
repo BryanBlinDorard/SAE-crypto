@@ -3,7 +3,7 @@ from string import ascii_uppercase
 """
 Formule : 
     Pour un clef (a,b) et une lettre à encoder x on a :
-    ax+b=resultat_encodage
+    ax+b=résultat_encodage
 """
 
 def encode_affine(texte:str,clef:tuple)->str:
@@ -11,7 +11,7 @@ def encode_affine(texte:str,clef:tuple)->str:
 
     Args:
         texte (str): Un texte à encoder.
-        clef (tuple): Un clef sous forme d'un tuble composé de deux entiers.
+        clef (tuple): Une clef sous forme d'un tuple composé de deux entiers.
 
     Returns:
         str: Un texte encodé.
@@ -25,7 +25,7 @@ def encode_affine(texte:str,clef:tuple)->str:
 """
 Formule :
     Pour une clef (a,b) et une lettre x à déchiffrer on a :
-    resultat_decodage=(x-b)/a
+    résultat_decodage=(x-b)/a
 """
 
 def decode_affine(code:str,clef:tuple)->str:
@@ -33,7 +33,7 @@ def decode_affine(code:str,clef:tuple)->str:
 
     Args:
         texte (str): Un texte à décoder.
-        clef (tuple): Un clef sous forme d'un tuble composé de deux entiers.
+        clef (tuple): Une clef sous forme d'un tuple composé de deux entiers.
 
     Returns:
         str: Un texte décodé.
@@ -45,7 +45,8 @@ def decode_affine(code:str,clef:tuple)->str:
     return convertir_en_lettres(indices_lettres)
 
 def convertir_en_nombres(texte:str)->list:
-    """Convertie un texte donnné en une liste d'entiers suivant la position des lettres dans l'alphabet.
+    """Convertie un texte donné en une liste d'entiers 
+    suivant la position des lettres dans l'alphabet.
 
     Args:
         texte (str): Un texte à convertir.
@@ -61,7 +62,7 @@ def convertir_en_nombres(texte:str)->list:
                 res.append(i)
 
 def convertir_en_lettres(chiffres:list)->str:
-    """Convertie un liste d'entiers (compris entre 0 et 26 exclu) donnée en une chaine de caractères.
+    """Convertit une liste d'entiers (compris entre 0 et 26 exclu) donnée en une chaine de caractères.
 
     Args:
         chiffres (list): Une liste d'entiers à convertir.
@@ -92,7 +93,7 @@ def texte_en_majuscules(texte:str)->str:
 
 def sauvergarder_carateres_non_lettres(texte:str)->dict:
     """Sauvegarde dans un dictionnaire les caractères n'étant 
-    pas des lettres ainsi que leur position dans la chaine de caractères initiale
+    pas des lettres ainsi que leur position dans la chaine de caractères initiale.
 
     Args:
         texte (str): Un texte à sauvegarder.
@@ -109,7 +110,7 @@ def supprimer_caracteres_non_lettres(texte:str)->str:
         texte (str): Un texte dans lequel supprimer les caractères non lettres.
 
     Returns:
-        str: Un chaine de caractères contenant uniquement des lettres.
+        str: Une chaine de caractères contenant uniquement des lettres.
     """    
 
 def ajouter_caractères_non_lettres(texte:str,positions:dict)->str:

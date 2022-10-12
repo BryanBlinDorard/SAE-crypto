@@ -38,6 +38,22 @@ def convertir_en_nombres(texte:str)->list:
             if lettre==ascii_uppercase[i]:
                 res.append(i)
 
+def convertir_en_lettres(chiffres:list)->str:
+    """Convertie un liste d'entiers (compris entre 0 et 26 exclu) donnée en une chaine de caractères.
+
+    Args:
+        chiffres (list): Une liste d'entiers à convertir.
+
+    Returns:
+        str: Une chaine de caractères.
+    """    
+    res = ""
+    for chiffre in chiffres:
+        for i in range(len(ascii_uppercase)):
+            if chiffre==i:
+                res+=ascii_uppercase[i]
+    return res
+
 def texte_en_majuscules(texte:str)->str:
     """Retourne le texte donné en majuscules.
 

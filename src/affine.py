@@ -16,6 +16,11 @@ def encode_affine(texte:str,clef:tuple)->str:
     Returns:
         str: Un texte encodé.
     """    
+    indices_lettres = convertir_en_nombres(texte)
+    indices_code = []
+    for indice_lettre in indices_lettres:
+        indices_code.append((clef[0]*indice_lettre+clef[1])%26)
+    return convertir_en_lettres(indices_code)
 
 def convertir_en_nombres(texte:str)->list:
     """Convertie un texte donnné en une liste d'entiers suivant la position des lettres dans l'alphabet.

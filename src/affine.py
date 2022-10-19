@@ -31,8 +31,5 @@ def decode_affine(code:str,clef:tuple)->str:
     indices_code = fonctions_utiles.convertir_en_nombres(code_simple)
     indices_lettres = []
     for indice_code in indices_code:
-        indices_lettres.append((fonctions_utiles.inverse_modulaire(clef[0],26)*indice_code-clef[1])%26)
+        indices_lettres.append((fonctions_utiles.inverse_modulaire(clef[0],26)*(indice_code-clef[1]))%26)
     return fonctions_utiles.ajouter_caracteres_non_lettres(code.upper(),fonctions_utiles.convertir_en_lettres(indices_lettres))
-
-print(encode_affine("j'aime les chips.",(17,3)))
-print(decode_affine(encode_affine("j'aime les chips.",(17,3)),(17,3)))

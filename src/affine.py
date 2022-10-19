@@ -1,4 +1,5 @@
 import fonctions_utiles
+import CONSTANTES
 
 def encode_affine(texte:str,clef:tuple)->str:
     """Encode un texte donné avec le chiffrement affine grâce à une clef donnée.
@@ -33,3 +34,18 @@ def decode_affine(code:str,clef:tuple)->str:
     for indice_code in indices_code:
         indices_lettres.append((fonctions_utiles.inverse_modulaire(clef[0],26)*(indice_code-clef[1]))%26)
     return fonctions_utiles.ajouter_caracteres_non_lettres(code.upper(),fonctions_utiles.convertir_en_lettres(indices_lettres))
+
+def brute_force_affine(code:str):
+    """Permet de casser un message coder avec chiffrement affine.
+
+    Args:
+        code (str): Un code crypté avec le chiffrement affine
+
+    Returns:
+        str: Le code déchifré.
+        tuple: La clef d'encodage.
+    """    
+    messages = []
+    for premier_avec_26 in CONSTANTES.PREMIERS_AVEC_26:
+        for i in range(26):
+            messages.append(decode_affine(code),(premier_avec_26, i))

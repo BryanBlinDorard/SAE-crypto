@@ -11,8 +11,8 @@ def convertir_en_nombres(texte:str)->list:
         list: Une liste d'entiers.
     """   
     res = []
-    texte_en_maj = texte_en_majuscules(texte)
-    for lettre in texte_en_maj:
+    texte.upper()
+    for lettre in texte:
         for i in range(len(ascii_uppercase)):
             if lettre==ascii_uppercase[i]:
                 res.append(i)
@@ -32,20 +32,6 @@ def convertir_en_lettres(chiffres:list)->str:
         for i in range(len(ascii_uppercase)):
             if chiffre==i:
                 res+=ascii_uppercase[i]
-    return res
-
-def texte_en_majuscules(texte:str)->str:
-    """Retourne le texte donné en majuscules.
-
-    Args:
-        texte (str): Un texte à mettre en majuscules.
-
-    Returns:
-        str: Un texte en majuscules.
-    """    
-    res = ""
-    for lettre in texte:
-        res+=lettre.upper()
     return res
 
 def supprimer_caracteres_non_lettres(texte:str)->str:

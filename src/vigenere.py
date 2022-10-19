@@ -1,6 +1,5 @@
-from fonctions import *
 from cesar import *
-
+from fonctions_utiles import *
 import math
 
 IDC_fr = 0.078
@@ -193,6 +192,8 @@ def clef(texte,longueur_cle):
       cle += chr(decalage+65)
   return cle
 
+# ------------------------------------------------------------------------#
+# DECHIFFREMENT AUTOMATIQUE
 
 def vigenere_decode_auto(c: str) -> str:
   """déchiffrement de vigenere
@@ -200,26 +201,25 @@ def vigenere_decode_auto(c: str) -> str:
   Args:
     c (str: le message à déchiffrer sous forme de chaine de caractères
   """
-  cpt=1
-  stop = False
   dict = {}
 
-  c = c.upper() # on met le message en majuscule
+  c = c.upper()
+  texte = c
+  c = supprimer_caracteres_non_lettres(c)
+
 
   dict1 = analyse_seq(c,2)
   dict2 = analyse_seq(c,3)
   dict = (dict1 | dict2)
-  # print(dict)
+
   diviseur_communs = diviseur_commun(dict)
-  # print(diviseur_communs)
   taille_cle = rechercher_max(diviseur_communs)
-  la_cle = clef(c,taille_cle)  
-  res = decode_vigenere(c,la_cle)
+
+  la_cle = clef(c,taille_cle) # la clé est trouvée
+  res = decode_vigenere(c,la_cle) # le message est déchiffré
+
+  res = ajouter_caracteres_non_lettres(texte,res) # on remet les caracteres non lettres
+
   print("la clef est : ",la_cle)
   print("le message est : ")
   return res
-
-
-a_dec = "Dwi gsftn seebvzx ezjg jzzo. Zp ldvzx npvlh. Tt jlzcqo jsy dvjmdbvj, wnzpke wi ilme. Qg wetavzx owpo. Yy jmlme qiumdbdege ujexlqo uy qipssfzb. Lr nimzpwwi, gpfa gfycl ll'yy ogrw, atpj wzcmu uf'ci ksnade, twcn gvznjeh bc'pe fzcmusy, vje pzqi, jsyvv kvzqn tsfxn. Uy niirp Didex-Ximkmy, ci tplxjkmd xgrmybdw wtoirplqo lr npvceyl llm ainjetb."
-a_dec = clear(a_dec)
-print(vigenere_decode_auto(a_dec))

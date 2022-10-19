@@ -1,6 +1,6 @@
 import math
-from fonctions import *
-from string import ascii_uppercase
+
+from fonctions_utiles import ajouter_caracteres_non_lettres, supprimer_caracteres_non_lettres
 
 FR_FREQ = {'A':9.42,'B':1.02,'C':2.64,'D':3.39,'E':15.87,'F':0.95,'G':1.04,'H':0.77,
 'I':8.41,'J':0.89,'K':0.00,'L':5.34,'M':3.24,'N':7.15,'O':5.14,'P':2.86,'Q':1.06,
@@ -19,7 +19,6 @@ def encode_cesar(text, key):
   Returns:
       str: texte chiffré
   """
-  text = clear(text)
   result = ""
   for letter in text:
       if letter in alphabet:
@@ -38,7 +37,6 @@ def calculer_frequence_lettre(text):
   Returns:
       dict: dictionnaire des fréquences
   """
-  text = clear(text)
   result = dict()
   for letter in alphabet:
       result[letter] = text.count(letter) / len(text) 
@@ -82,7 +80,7 @@ def cle_cesar(text):
     if distance[cle]==min(distance.values()):
       return cle  
 
-def decode_cesar(text):
+def decode_cesar_auto(text):
   """Décryptage code de césar 
 
   Args:
@@ -91,11 +89,14 @@ def decode_cesar(text):
   Returns:
       str: texte décrypté
   """
-  cle = cle_cesar(text)
+  text = text.upper()
+  texte = supprimer_caracteres_non_lettres(text)
+  cle = cle_cesar(texte)
   # print(cle)
-  return encode_cesar(text,cle)
+  res = encode_cesar(texte,cle)
+  res = ajouter_caracteres_non_lettres(text,res)
+  print("la clef est : ",vrai_cle(cle))
+  return res
 
 def vrai_cle(cle):
   return 26-cle
-
-print(decode_cesar(clear("Zc krgfkr u'le ufzxk le rzi drikzrc jli c'fscfex tyrjjzj ul mrjzjkrj.Zc flmizk jfe wizxf dlirc, zc gizk ul crzk wifzu, zc slk le xireu sfc. Zc j'rgrzjrzk. Zc j'rjjzk jli jfe tfjp, zc gizk le aflierc hl'zc gritflilk u'le rzi uzjkirzk. Zc rccldr le tzxrizccf hl'zc wldr aljhl'rl sflk hlfzhl'zc kiflmrk jfe griwld ziizkrek. Zc kfljjr.")))

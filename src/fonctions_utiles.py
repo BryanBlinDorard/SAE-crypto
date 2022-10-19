@@ -78,3 +78,11 @@ def inverse_modulaire(chiffre:int, modulo:int)->int:
         if inverse>chiffre**10:
             break
     return inverse
+
+
+# pour vigenere
+def calc_freq(texte):
+    tab_freq = [0]*26
+    for c in texte:
+        tab_freq[ord(c)-65] += 1  
+    return tab_freq

@@ -143,17 +143,17 @@ def rechercher_max(dict):
 #--------------------------------------------------------------------------------#
 # TROUVER LA CLE
 
-def cesar_vig(message,d):
+def cesar_vig(message,décalage):
     # effectue le decalage d sur les caracteres de message
     chiffre=''
-    for c in message:
-        chiffre += decalage_lettre(c,-d)
+    for caractere in message:
+        chiffre += decalage_lettre(caractere,-décalage)
     return chiffre
 
-def decalage_lettre(c,k):
+def decalage_lettre(caractere,indice):
     # decale une lettre majuscule. Les autres caracteres ne sont pas modifies
-    car = ord(c.upper())
-    car += k
+    car = ord(caractere.upper())
+    car += indice
     while car>90:
         car -= 26
     while car<65:
@@ -195,7 +195,7 @@ def clef(texte,longueur_cle):
 # ------------------------------------------------------------------------#
 # DECHIFFREMENT AUTOMATIQUE
 
-def vigenere_decode_auto(c: str) -> str:
+def vigenere_decode_auto(message_chiffre: str) -> str:
   """déchiffrement de vigenere
 
   Args:
@@ -203,20 +203,20 @@ def vigenere_decode_auto(c: str) -> str:
   """
   dict = {}
 
-  c = c.upper()
-  texte = c
-  c = supprimer_caracteres_non_lettres(c)
+  message_chiffre = message_chiffre.upper()
+  texte = message_chiffre
+  message_chiffre = supprimer_caracteres_non_lettres(message_chiffre)
 
 
-  dict1 = analyse_seq(c,2)
-  dict2 = analyse_seq(c,3)
+  dict1 = analyse_seq(message_chiffre,2)
+  dict2 = analyse_seq(message_chiffre,3)
   dict = (dict1 | dict2)
 
   diviseur_communs = diviseur_commun(dict)
   taille_cle = rechercher_max(diviseur_communs)
 
-  la_cle = clef(c,taille_cle) # la clé est trouvée
-  res = decode_vigenere(c,la_cle) # le message est déchiffré
+  la_cle = clef(message_chiffre,taille_cle) # la clé est trouvée
+  res = decode_vigenere(message_chiffre,la_cle) # le message est déchiffré
 
   res = ajouter_caracteres_non_lettres(texte,res) # on remet les caracteres non lettres
 

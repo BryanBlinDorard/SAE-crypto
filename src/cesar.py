@@ -42,8 +42,6 @@ def calculer_frequence_lettre(text):
       result[letter] = text.count(letter) / len(text) 
   return result
 
-
-
 def cle_cesar(text):
   """Analyse fréquencielle pour décryptage code de césar
 
@@ -54,9 +52,7 @@ def cle_cesar(text):
       int: clé de chiffrement
   """
   tableau_de_freq_global=dict()
-  
-  cpt=0 #compteur de lettre
-
+  cpt_de_lettre=0
   distance=dict() #dictionnaire des distances
 
   #calcul de la fréquence de chaque lettre et pour chaque indice de décalage
@@ -64,8 +60,8 @@ def cle_cesar(text):
     phrase = encode_cesar(text,i)
     tableau_freq=calculer_frequence_lettre(phrase)
     # print(tableau_freq)
-    tableau_de_freq_global[cpt]=tableau_freq
-    cpt+=1
+    tableau_de_freq_global[cpt_de_lettre]=tableau_freq
+    cpt_de_lettre+=1
   
   #calcul de la distance entre la fréquence de chaque lettre et la fréquence globale
   for sous_tableau_frequence in tableau_de_freq_global:

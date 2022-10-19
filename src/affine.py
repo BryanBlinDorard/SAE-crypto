@@ -1,11 +1,5 @@
 import fonctions_utiles
 
-"""
-Formule : 
-    Pour un clef (a,b) et une lettre à encoder x on a :
-    ax+b=résultat_encodage
-"""
-
 def encode_affine(texte:str,clef:tuple)->str:
     """Encode un texte donné avec le chiffrement affine grâce à une clef donnée.
 
@@ -16,17 +10,12 @@ def encode_affine(texte:str,clef:tuple)->str:
     Returns:
         str: Un texte encodé.
     """    
-    indices_lettres = fonctions_utiles.convertir_en_nombres(texte)
+    texte_simple = fonctions_utiles.supprimer_caracteres_non_lettres(texte.upper())
+    indices_lettres = fonctions_utiles.convertir_en_nombres(texte_simple)
     indices_code = []
     for indice_lettre in indices_lettres:
         indices_code.append((clef[0]*indice_lettre+clef[1])%26)
-    return fonctions_utiles.convertir_en_lettres(indices_code)
-
-"""
-Formule :
-    Pour une clef (a,b) et une lettre x à déchiffrer on a :
-    résultat_decodage=(x-b)/a
-"""
+    return fonctions_utiles.ajouter_caracteres_non_lettres(texte.upper(),fonctions_utiles.convertir_en_lettres(indices_code))
 
 def decode_affine(code:str,clef:tuple)->str:
     """Décode un texte donné avec le chiffrement affine grâce à une clef donnée.
@@ -37,10 +26,13 @@ def decode_affine(code:str,clef:tuple)->str:
 
     Returns:
         str: Un texte décodé.
-    """    
-    indices_code = fonctions_utiles.convertir_en_nombres(code)
+    """   
+    code_simple = fonctions_utiles.supprimer_caracteres_non_lettres(code.upper()) 
+    indices_code = fonctions_utiles.convertir_en_nombres(code_simple)
     indices_lettres = []
     for indice_code in indices_code:
-        indices_lettres.append((clef[0]*indice_code+clef[1])%26)
-    return fonctions_utiles.convertir_en_lettres(indices_lettres)
- 
+        indices_lettres.append((fonctions_utiles.inverse_modulaire(clef[0],26)*indice_code-clef[1])%26)
+    return fonctions_utiles.ajouter_caracteres_non_lettres(code.upper(),fonctions_utiles.convertir_en_lettres(indices_lettres))
+
+print(encode_affine("j'aime les chips.",(17,3)))
+print(decode_affine(encode_affine("j'aime les chips.",(17,3)),(17,3)))

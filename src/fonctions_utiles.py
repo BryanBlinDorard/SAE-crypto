@@ -70,3 +70,11 @@ def ajouter_caracteres_non_lettres(texte_de_base:str,texte:str)->str:
             indice_texte+=1
         indice_texte_de_base+=1
     return res
+
+def inverse_modulaire(chiffre:int, modulo:int)->int:
+    inverse=2
+    while chiffre*inverse%modulo!=1:
+        inverse+=1
+        if inverse>chiffre**10:
+            break
+    return inverse

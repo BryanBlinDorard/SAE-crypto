@@ -63,16 +63,24 @@ def supprimer_caracteres_non_lettres(texte:str)->str:
             res+=lettre
     return res
 
-def ajouter_caractères_non_lettres(texte:str,texte_de_base:str)->str:
+def ajouter_caracteres_non_lettres(texte_de_base:str,texte:str)->str:
     """Ajoute les caractères spéciaux dans un texte donné grâce au texte d'origine.
 
     Args:
-        texte (str): Un texte dans lequel ajouter les caractères spéciaux.
         texte_de_base(str): Le texte initial dans lequel on a retiré les caractère
+        texte (str): Un texte dans lequel ajouter les caractères spéciaux.
 
     Returns:
         str: Un texte avec les caractères spéciaux rajoutés.
     """   
     res = ""
+    indice_texte = 0
+    indice_texte_de_base = 0
     while len(res) < len(texte_de_base):
-        ...
+        if texte_de_base[indice_texte_de_base] not in ascii_uppercase:
+            res+=texte_de_base[indice_texte_de_base]
+        else:
+            res+=texte[indice_texte]
+            indice_texte+=1
+        indice_texte_de_base+=1
+    return res

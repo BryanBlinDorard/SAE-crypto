@@ -1,9 +1,9 @@
 from cesar import *
 from fonctions_utiles import *
 import math
+import CONSTANTES
 
-IDC_fr = 0.078
-histogramme = [0.084,0.0106,0.0303,0.0418,0.1726,0.0112,0.0127,0.0092,0.0734,0.0031,0.0005,0.0601,0.0296,0.0713,0.0526,0.0301,0.0099,0.0655,0.0808,0.0707,0.0574,0.0132,0.0004,0.0045,0.0030,0.0012]
+
 
 def encode_vigenere(texte: str, cle: str) -> str:
   """chiffrement de vigenere
@@ -185,7 +185,7 @@ def clef(texte,longueur_cle):
           chiffre = cesar_vig(partiel,d)
           frequences = calc_freq(chiffre)
           for i in range(26):
-              ecart += abs(frequences[i]/long_message-histogramme[i])
+              ecart += abs(frequences[i]/long_message-CONSTANTES.HISTOGRAMME[i])
           if ecart<ecart_minimal:
               ecart_minimal = ecart
               decalage = d

@@ -1,4 +1,4 @@
-from string import ascii_uppercase
+import CONSTANTES
 
 def convertir_en_nombres(texte:str)->list:
     """Convertie un texte donné en une liste d'entiers 
@@ -13,8 +13,8 @@ def convertir_en_nombres(texte:str)->list:
     res = []
     texte.upper()
     for lettre in texte:
-        for i in range(len(ascii_uppercase)):
-            if lettre==ascii_uppercase[i]:
+        for i in range(len(CONSTANTES.ALPHABET)):
+            if lettre==CONSTANTES.ALPHABET[i]:
                 res.append(i)
     return res
 
@@ -29,9 +29,9 @@ def convertir_en_lettres(chiffres:list)->str:
     """    
     res = ""
     for chiffre in chiffres:
-        for i in range(len(ascii_uppercase)):
+        for i in range(len(CONSTANTES.ALPHABET)):
             if chiffre==i:
-                res+=ascii_uppercase[i]
+                res+=CONSTANTES.ALPHABET[i]
     return res
 
 def supprimer_caracteres_non_lettres(texte:str)->str:
@@ -45,7 +45,7 @@ def supprimer_caracteres_non_lettres(texte:str)->str:
     """    
     res = ""
     for lettre in texte:
-        if lettre in ascii_uppercase:
+        if lettre in CONSTANTES.ALPHABET:
             res+=lettre
     return res
 
@@ -63,7 +63,7 @@ def ajouter_caracteres_non_lettres(texte_de_base:str,texte:str)->str:
     indice_texte = 0
     indice_texte_de_base = 0
     while len(res) < len(texte_de_base):
-        if texte_de_base[indice_texte_de_base] not in ascii_uppercase:
+        if texte_de_base[indice_texte_de_base] not in CONSTANTES.ALPHABET:
             res+=texte_de_base[indice_texte_de_base]
         else:
             res+=texte[indice_texte]

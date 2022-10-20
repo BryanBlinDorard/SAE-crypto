@@ -1,12 +1,12 @@
 import math
 
+import CONSTANTES
+
 from fonctions_utiles import ajouter_caracteres_non_lettres, supprimer_caracteres_non_lettres
 
 FR_FREQ = {'A':9.42,'B':1.02,'C':2.64,'D':3.39,'E':15.87,'F':0.95,'G':1.04,'H':0.77,
 'I':8.41,'J':0.89,'K':0.00,'L':5.34,'M':3.24,'N':7.15,'O':5.14,'P':2.86,'Q':1.06,
 'R':6.46,'S':7.90,'T':7.26,'U':6.24,'V':2.15,'W':0.00,'X':0.30,'Y':0.24,'Z':0.32}
-
-alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 def encode_cesar(text, key):
@@ -21,8 +21,8 @@ def encode_cesar(text, key):
   """
   result = ""
   for letter in text:
-      if letter in alphabet:
-          result += alphabet[(alphabet.index(letter) + key) % len(alphabet)]
+      if letter in CONSTANTES.ALPHABET:
+          result += CONSTANTES.ALPHABET[(CONSTANTES.ALPHABET.index(letter) + key) % len(CONSTANTES.ALPHABET)]
       else:
           result += letter
   return result
@@ -38,7 +38,7 @@ def calculer_frequence_lettre(text):
       dict: dictionnaire des fréquences
   """
   result = dict()
-  for letter in alphabet:
+  for letter in CONSTANTES.ALPHABET:
       result[letter] = text.count(letter) / len(text) 
   return result
 

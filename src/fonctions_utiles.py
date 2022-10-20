@@ -86,3 +86,19 @@ def calc_freq(texte):
     for c in texte:
         tab_freq[ord(c)-65] += 1  
     return tab_freq
+
+
+# pour affine et cesar
+def calculer_frequence_lettre(text):
+    """Calcule la fréquence d'apparition de chaque lettre dans le texte
+
+    Args:
+        text (str): texte à analyser
+
+	Returns:
+		dict: dictionnaire des fréquences
+		"""
+    result = dict()
+    for letter in CONSTANTES.ALPHABET:
+        result[letter] = text.count(letter) / len(text) 
+    return result

@@ -146,3 +146,45 @@ def premiers_avec(num:int)->list:
         if pgcd(i,num)==1:
             res.append(i)
     return res
+
+def grouper_par_deux(liste:list)->list:
+    """Permet de grouper deux par deux dans des sous-listes les éléments d'une liste donnée.
+
+    Args:
+        liste (list): Une liste d'éléments à grouper par deux.
+
+    Returns:
+        list: Une liste d'éléments groupés deux par deux.
+    """    
+    res = []
+    sous_liste = []
+    for i in range(len(liste)):
+        if (i+1)%2==0:
+            sous_liste.append(liste[i])
+            res.append(sous_liste.copy())
+            sous_liste = []
+        else:
+            sous_liste.append(liste[i])
+    return res
+
+def determinant_matrice(matrice:list)->int:
+    """Calcule le déterminant d'une matrice donnée.
+
+    Args:
+        matrice (list): Une matrice de taille 2*2 de la forme [[],[]]
+
+    Returns:
+        int: Le déterminant de la matrice.
+    """    
+    return (matrice[0][1]*matrice[1][1])-(matrice[0][1]*matrice[1][0])
+
+def matrice_inversible(matrice:list)->bool:
+    """Détermine si la matrice donnée est inversible ou non.
+
+    Args:
+        matrice (list): Une matrice de taille 2*2 sous la forme [[],[]].
+
+    Returns:
+        bool: True si la matrice est inversible. False sinon.
+    """    
+    return determinant_matrice(matrice)!=0

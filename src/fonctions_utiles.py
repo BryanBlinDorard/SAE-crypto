@@ -194,7 +194,7 @@ def matrice_cofacteurs(matrice):
     return [[matrice[1][1],-matrice[0][1]],[-matrice[1][0],matrice[0][0]]]
 
 def inverse_matrice(matrice:list)->list:
-    """INverse une matrice donnée.
+    """Inverse une matrice donnée.
 
     Args:
         matrice (list): Une matrice de taille 2*2 sous la forme [[],[]].

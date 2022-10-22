@@ -72,6 +72,15 @@ def ajouter_caracteres_non_lettres(texte_de_base:str,texte:str)->str:
     return res
 
 def inverse_modulaire(chiffre:int, modulo:int)->int:
+    """Calcule l'inverse modulaire d'un nombre donné en premier paramètre modulo le deuxième.
+
+    Args:
+        chiffre (int): Un nombre.
+        modulo (int): Un modulo
+
+    Returns:
+        int: L'inverse modulaire.
+    """    
     inverse=2
     while chiffre*inverse%modulo!=1:
         inverse+=1
@@ -102,3 +111,24 @@ def calculer_frequence_lettre(text):
     for letter in CONSTANTES.ALPHABET:
         result[letter] = text.count(letter) / len(text) 
     return result
+
+def pgcd(num1:int,num2:int)->int:
+    """Calcule le plus grand commun diviseur de deux nombres donnés 
+    grâce à l'algorithme d'Euclide.
+
+    Args:
+        num1 (int): Un premier entier.
+        num2 (int): Un deuxième entier.
+
+    Returns:
+        int: Le plus grand commun diviseur.
+    """    
+    reste = num1%num2
+    if reste==0:
+        return reste
+    elif pgcd(num2, reste)==0:
+        return reste
+    else:
+        reste = pgcd(num2, reste)
+    return reste
+    

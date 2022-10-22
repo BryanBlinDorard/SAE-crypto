@@ -1,3 +1,4 @@
+from base64 import encode
 import CONSTANTES
 import fonctions_utiles
 
@@ -42,22 +43,23 @@ def encode_hill(texte:str, clef:list)->str:
 
   return texte_encode
 
+def decode_hill(code:str,clef:list)->str:
+    """Décode un matrice codée avec Hill grâce à sa clef d'encodage.
 
-def determinant_matrice(matrice):
-  return matrice[0][0]*matrice[1][1] - matrice[0][1]*matrice[1][0]
+    Args:
+        code (str): Un texte codé avec Hill.
+        clef (list): La clef utilisée pour l'encodage.
 
-def matrice_cofacteurs(matrice):
-  return [[matrice[1][1],-matrice[0][1]],[-matrice[1][0],matrice[0][0]]]
-
-def inverse_matrice(matrice):
-  det = determinant_matrice(matrice)
-  if det == 0:
-    return "Erreur: Matrice non inversible"
-
-  matrice_cof = matrice_cofacteurs(matrice)
-  new_matrice = [[],[]]
-
-  for i in range(2):
-    for j in range(2):
-      new_matrice[i].append((matrice_cof[i][j]/det)%26)
-  return new_matrice
+    Returns:
+        str: Le texte décodé
+    """  
+    inverse_clef = fonctions_utiles.inverse_matrice(clef)
+    print(inverse_clef)
+    return encode_hill(code,inverse_clef)
+texte = "coucou"
+clef = [[3,5],[1,2]]
+texte_code = encode_hill(texte, clef)
+texte_decode = decode_hill(texte_code, clef)
+print(texte)
+print(texte_code)
+print(texte_decode)

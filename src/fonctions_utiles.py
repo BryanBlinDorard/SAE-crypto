@@ -1,3 +1,4 @@
+import math
 import CONSTANTES
 
 def convertir_en_nombres(texte:str)->list:
@@ -188,3 +189,27 @@ def matrice_inversible(matrice:list)->bool:
         bool: True si la matrice est inversible. False sinon.
     """    
     return determinant_matrice(matrice)!=0
+
+def matrice_cofacteurs(matrice):
+    return [[matrice[1][1],-matrice[0][1]],[-matrice[1][0],matrice[0][0]]]
+
+def inverse_matrice(matrice:list)->list:
+    """INverse une matrice donnée.
+
+    Args:
+        matrice (list): Une matrice de taille 2*2 sous la forme [[],[]].
+
+    Returns:
+        list: La matrice inverse de la matrice donnée en paramètre.
+    """    
+    det = determinant_matrice(matrice)
+    if det == 0:
+        return "Erreur: Matrice non inversible"
+
+    matrice_cof = matrice_cofacteurs(matrice)
+    new_matrice = [[],[]]
+
+    for i in range(2):
+        for j in range(2):
+            new_matrice[i].append(math.floor((matrice_cof[i][j]/det)%26))
+    return new_matrice

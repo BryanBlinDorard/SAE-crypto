@@ -1,8 +1,9 @@
 import os
 
-from CONSTANTES import *
-from vigenere import *
-from cesar import *
+import CONSTANTES
+import vigenere
+import cesar
+import affine
 
 def menu():
   print("----------")
@@ -26,13 +27,13 @@ def terminal():
     clear_terminal()
     match input1:
       case "1":
-        print("1")
+        print(affine.casser_affine_auto(CONSTANTES.TEXTE_1))
       case "2":
-        print(vigenere_decode_auto(TEXTE_2))
+        print(vigenere.vigenere_decode_auto(CONSTANTES.TEXTE_2))
       case "3":
         print("3")
       case "4":
-        print(decode_cesar_auto(TEXTE_4))
+        print(cesar.decode_cesar_auto(CONSTANTES.TEXTE_4))
       case "5":
         print("5")
       case "6":

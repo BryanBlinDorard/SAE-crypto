@@ -72,6 +72,15 @@ def ajouter_caracteres_non_lettres(texte_de_base:str,texte:str)->str:
     return res
 
 def inverse_modulaire(chiffre:int, modulo:int)->int:
+    """Calcule l'inverse modulaire d'un nombre donné en premier paramètre modulo le deuxième.
+
+    Args:
+        chiffre (int): Un nombre.
+        modulo (int): Un modulo
+
+    Returns:
+        int: L'inverse modulaire.
+    """    
     inverse=2
     while chiffre*inverse%modulo!=1:
         inverse+=1
@@ -86,3 +95,54 @@ def calc_freq(texte):
     for c in texte:
         tab_freq[ord(c)-65] += 1  
     return tab_freq
+
+
+# pour affine et cesar
+def calculer_frequence_lettre(text):
+    """Calcule la fréquence d'apparition de chaque lettre dans le texte
+
+    Args:
+        text (str): texte à analyser
+
+	Returns:
+		dict: dictionnaire des fréquences
+		"""
+    result = dict()
+    for letter in CONSTANTES.ALPHABET:
+        result[letter] = text.count(letter) / len(text) 
+    return result
+
+def pgcd(num1:int,num2:int)->int:
+    """Calcule le plus grand commun diviseur de deux nombres donnés 
+    grâce à l'algorithme d'Euclide.
+
+    Args:
+        num1 (int): Un premier entier.
+        num2 (int): Un deuxième entier.
+
+    Returns:
+        int: Le plus grand commun diviseur.
+    """    
+    reste = num1%num2
+    if reste==0:
+        return reste
+    elif pgcd(num2, reste)==0:
+        return reste
+    else:
+        reste = pgcd(num2, reste)
+    return reste
+
+def premiers_avec(num:int)->list:
+    """Cherche les nombres premiers avec le chiffre donné en paramètre.
+
+    Args:
+        num (int): Un chiffre quelconque.
+
+    Returns:
+        list: La liste des nombres premiers avec le chiffre donné.
+    """    
+    res = []
+    for i in range(num):
+        if pgcd(i,num)==1:
+            res.append(i)
+    return res

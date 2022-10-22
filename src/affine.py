@@ -96,8 +96,8 @@ def test_toutes_les_possibilites(code:str):
     possibilites = {}
     for premier_avec_26 in fonctions_utiles.premiers_avec(26):
         for i in range(26):
-            phrase_potentiel_decodage = decode_affine(code,(premier_avec_26,i))
-            possibilites[phrase_potentiel_decodage] = (premier_avec_26,i)
+            phrase_potentielle = decode_affine(code,(premier_avec_26,i))
+            possibilites[phrase_potentielle] = (premier_avec_26,i)
     return possibilites
 
 def casser_affine_auto(texte_a_decoder:str)->str:

@@ -73,8 +73,7 @@ def decode_cesar_auto(text):
   # print(cle)
   res = encode_cesar(texte,cle)
   res = ajouter_caracteres_non_lettres(text,res)
-  print("la clef est : ",vrai_cle(cle))
-  return res
+  return (res,vrai_cle(cle))
 
 def vrai_cle(cle):
   return 26-cle

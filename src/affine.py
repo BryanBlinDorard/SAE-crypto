@@ -75,9 +75,11 @@ def distance_la_plus_petite(distance:dict)->str:
     """
 
     distance_mini = None
+    texte_mini = ""
     for texte in distance:
         if distance_mini == None:
             distance_mini = distance[texte]
+            texte_mini = texte
         if distance[texte] < distance_mini:
             distance_mini = distance[texte]
             texte_mini = texte
@@ -112,8 +114,12 @@ def casser_affine_auto(texte_a_decoder:str)->str:
     texte_a_decoder = texte_a_decoder.upper()
 
     possibilites = test_toutes_les_possibilites(texte_a_decoder)
+    # print(possibilites)
     distance = calcul_distance(possibilites)
+    # print(distance)
     texte = distance_la_plus_petite(distance)
-    
+    cle = possibilites[fonctions_utiles.ajouter_caracteres_non_lettres(texte_a_decoder,texte)] # me donne la clé
     texte_final = fonctions_utiles.ajouter_caracteres_non_lettres(texte_a_decoder,texte)
-    return texte_final
+    return (texte_final,cle)
+
+print(casser_affine_auto("Huyzu Izxk u'hoovihvy eht h wzopvo. Vk hkkdph. Tzu Ahc phojdhvy pvudvy ivuly. Vk ezdtth du eozgzuw tzdevo, t'httvy whut tzu kvy, t'heedxhuy tdo tzu ezkzrqzu. Vk eovy du ozphu, vk k'zdiovy, vk kdy; phvt vk u'x thvtvtthvy jd'du vpmozlkvz rzugdt, vk mdyhvy h yzdy vutyhuy tdo du pzy wzuy vk vluzohvy kh tvluvgvrhyvzu. Vk hmhuwzuuh tzu ozphu tdo tzu kvy. Vk hkkh h tzu khihmz; vk pzdvkkh du lhuy jd'vk ehtth tdo tzu gozuy, tdo tzu rzd."))

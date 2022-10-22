@@ -131,4 +131,18 @@ def pgcd(num1:int,num2:int)->int:
     else:
         reste = pgcd(num2, reste)
     return reste
-    
+
+def premiers_avec(num:int)->list:
+    """Cherche les nombres premiers avec le chiffre donné en paramètre.
+
+    Args:
+        num (int): Un chiffre quelconque.
+
+    Returns:
+        list: La liste des nombres premiers avec le chiffre donné.
+    """    
+    res = []
+    for i in range(num):
+        if pgcd(i,num)==1:
+            res.append(i)
+    return res

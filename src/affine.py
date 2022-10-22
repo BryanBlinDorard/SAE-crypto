@@ -94,7 +94,7 @@ def test_toutes_les_possibilites(code:str):
         dict: Un dictionnaire avec toutes les possibilités de décodage d'un texte.
     """    
     possibilites = {}
-    for premier_avec_26 in CONSTANTES.PREMIERS_AVEC_26:
+    for premier_avec_26 in fonctions_utiles.premiers_avec(26):
         for i in range(26):
             phrase_potentiel_decodage = decode_affine(code,(premier_avec_26,i))
             possibilites[phrase_potentiel_decodage] = (premier_avec_26,i)

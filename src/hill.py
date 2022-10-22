@@ -56,10 +56,3 @@ def decode_hill(code:str,clef:list)->str:
     inverse_clef = fonctions_utiles.inverse_matrice(clef)
     print(inverse_clef)
     return encode_hill(code,inverse_clef)
-texte = "coucou"
-clef = [[3,5],[1,2]]
-texte_code = encode_hill(texte, clef)
-texte_decode = decode_hill(texte_code, clef)
-print(texte)
-print(texte_code)
-print(texte_decode)

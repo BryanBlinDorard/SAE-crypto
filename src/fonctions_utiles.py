@@ -177,7 +177,7 @@ def determinant_matrice(matrice:list)->int:
     Returns:
         int: Le déterminant de la matrice.
     """    
-    return (matrice[0][1]*matrice[1][1])-(matrice[0][1]*matrice[1][0])
+    return (matrice[0][0]*matrice[1][1])-(matrice[0][1]*matrice[1][0])
 
 def matrice_inversible(matrice:list)->bool:
     """Détermine si la matrice donnée est inversible ou non.

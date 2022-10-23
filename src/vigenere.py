@@ -172,6 +172,8 @@ def clef(texte,longueur_cle):
   """
   cle = ""
   taille_cle = 0
+  if longueur_cle == None:
+    return None
   for taille_cle in range(longueur_cle):
       partiel = ""
       variable = 0
@@ -216,10 +218,9 @@ def vigenere_decode_auto(message_chiffre: str) -> str:
   taille_cle = rechercher_max(diviseur_communs)
 
   la_cle = clef(message_chiffre,taille_cle) # la clé est trouvée
+  if la_cle == None:
+    return "La clé n'a pas été trouvée"
   res = decode_vigenere(message_chiffre,la_cle) # le message est déchiffré
-
   res = ajouter_caracteres_non_lettres(texte,res) # on remet les caracteres non lettres
 
-  print("la clef est : ",la_cle)
-  print("le message est : ")
-  return res
+  return (res,la_cle)

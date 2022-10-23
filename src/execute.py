@@ -77,11 +77,11 @@ def terminal():
       case "2":
         print(vigenere.vigenere_decode_auto(CONSTANTES.TEXTE_2))
       case "3":
-        print("3")
+        print("Le décodage automatique du texte 3 ne fonctionne pas, mais le code d'encodage et de décodage est présent")
       case "4":
         print(cesar.decode_cesar_auto(CONSTANTES.TEXTE_4))
       case "5":
-        print("5")
+        print("La substution n'a pas été implémentée")
       case "6":
         boucle = False  
       case _:

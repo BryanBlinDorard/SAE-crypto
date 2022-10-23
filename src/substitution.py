@@ -235,11 +235,49 @@ def dechiffrement(text : str,dico_freq : dict) -> str:
 
 
     return text_dechiffre
-text = open_fichier("texte.txt")
-text = correction(text)
-print("=====================================================================================================================================================================================")
-print("texte dechiffre : ", dechiffrement(text, DICO_BIGRAME))
-print("=====================================================================================================================================================================================")
+#text = open_fichier("texte.txt")
+#text = correction(text)
+#print("=====================================================================================================================================================================================")
+#print("texte dechiffre : ", dechiffrement(text, DICO_BIGRAME))
+#print("=====================================================================================================================================================================================")
 
-text = correction("Os dom sb kbrog : wf bok bykg-ewzbof ywm lwoxo r'wf zglmgf, hwol wf mbfug, hwol wf ygv-mkgm, hwol wf egmossgf dol bw ugwm rw pgwk. Rwmkgfe eibfmb rw Sbfndbff, Zbkzbkb wf dbrkoubs r'Bkbugf, Lmoei-Kbfrbss wf bok r' Borb.")
-dechiffrement(text,DICO_BIGRAME)
+#text = correction("Os dom sb kbrog : wf bok bykg-ewzbof ywm lwoxo r'wf zglmgf, hwol wf mbfug, hwol wf ygv-mkgm, hwol wf egmossgf dol bw ugwm rw pgwk. Rwmkgfe eibfmb rw Sbfndbff, Zbkzbkb wf dbrkoubs r'Bkbugf, Lmoei-Kbfrbss wf bok r' Borb.")
+#dechiffrement(text,DICO_BIGRAME)
+
+def chiffrement(text : str, cle: str) -> str:
+    """
+    Chiffre un texte avec une clé
+
+    Args :
+        text : un message
+        cle : une clé
+    Return:
+        str : le message chiffré
+    """
+    text_chiffre = ""
+    for i in range(len(text)):
+        if text[i] == " ":
+            text_chiffre += " "
+        else:
+            text_chiffre += ALPHABET[(ALPHABET.index(text[i]) + ALPHABET.index(cle[i%len(cle)]))%26] # On ajoute la lettre chiffrée à la suite du texte chiffré
+    return text_chiffre
+print(chiffrement("CETTE PHRASE EST TRES LONGUE ET DEMAIN ON VA MANGER DES PATES AU BEURRE AVEC DE LA SAUCE TOMATE ET DU THON CAR BASTIEN EST DEBILE ET HIER ON A MANGER DES VACHES AVEC DU JAMBON ET DU FROMAGE AVEC DES YAOURTS ET DU FROMAGE ET ENCORE DU FROMAGE","BASTIEN"))
+
+def dechiffrement_cle(text : str, cle : str) -> str:
+    """
+    Déchiffre un texte avec une clé
+
+    Args :
+        text : un message
+        dico_freq : un dictionnaire de fréquence
+    Return:
+        str : le message déchiffré
+    """
+    text_dechiffre = ""
+    for i in range(len(text)):
+        if text[i] == " ":
+            text_dechiffre += " "
+        else:
+            text_dechiffre += ALPHABET[(ALPHABET.index(text[i]) - ALPHABET.index(cle[i%len(cle)]))%26] # On ajoute la lettre déchiffrée à la suite du texte déchiffré
+    return text_dechiffre
+print(dechiffrement_cle("DELMM CIRSLM RTT MZIF LGGOYR EL LIZBIF WR WA FIRTFR WMW QALXA NV TXCVEF SOMG EE EI FBUUX XBNALX IG DM BLBO UTZ OBSLBMR FSL LIOJLW MX IIWK SA A FIRTFR WMW WAUAMW BVWV HH JSFJSA EL LY GRGFIKR ANXK QFS RISHSTK MX EU YZSZBGW MX FNUHZI EU YZSZBGW","BASTIEN"))
